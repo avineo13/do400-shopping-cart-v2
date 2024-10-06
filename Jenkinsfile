@@ -55,9 +55,10 @@ pipeline {
                 try {
 
                     sh './mvnw package -D skipTests'
-                } catch (Exception e) {
+                } catch (Exception ex) {
 
-                    echo 'Error while generating JAR file' 
+                    echo 'Error while generating JAR file'
+                    throw exx
                 }
             
             }
