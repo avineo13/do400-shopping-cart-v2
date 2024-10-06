@@ -44,27 +44,27 @@ pipeline {
 
         }
 
-    }
+        stage('Build') {
 
-    stage('Build') {
+            steps {
 
-        steps {
+                script {
 
-            script {
+                    try {
 
-                try {
+                        sh './mvnw package -D skipTests'
+                    } catch (Exception ex) {
 
-                    sh './mvnw package -D skipTests'
-                } catch (Exception ex) {
-
-                    echo 'Error while generating JAR file'
-                    throw exx
+                        echo 'Error while generating JAR file'
+                        throw exx
+                    }
+                
                 }
-            
+
             }
 
         }
-
+    
     }
 
 }
